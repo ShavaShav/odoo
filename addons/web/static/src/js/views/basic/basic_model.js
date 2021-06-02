@@ -1768,7 +1768,7 @@ var BasicModel = AbstractModel.extend({
                 // TODO: before registering the changes, verify that the x2many
                 // value has changed
                 record._changes[name] = list.id;
-                list._changes = list._changes || [];
+                list._changes = list._changes && Array.isArray(list._changes) ? list._changes : [];
 
                 // save it in case of a [5] which will remove the _changes
                 var oldChanges = list._changes;
@@ -1907,7 +1907,7 @@ var BasicModel = AbstractModel.extend({
         var view = fieldInfo.views && fieldInfo.views[fieldInfo.mode];
         var def, rec;
         var defs = [];
-        list._changes = list._changes || [];
+        list._changes = list._changes && Array.isArray(list._changes) ? list._changes : [];
 
         switch (command.operation) {
             case 'ADD':
